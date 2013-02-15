@@ -1,0 +1,16 @@
+@(title: String)
+
+@js(src: String) = {
+<script type="text/javascript" src="js/@src"></script>
+}
+
+@css(src: String) = {
+<link rel="stylesheet" href="@src">
+}
+
+@main(title) {
+@jsScript("main.js")
+@css("main.css")
+} {
+<p>Hello there</p>
+}
