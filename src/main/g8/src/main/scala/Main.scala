@@ -21,18 +21,18 @@ object Main extends App
     pathPrefix("js" / Rest) { fileName =>
       get {
         encodeResponse(Gzip) {
-          getFromResource(s"js/$fileName")
+          getFromResource("js/" + fileName)
         }
       }
     } ~
     pathPrefix("css" / Rest) { fileName =>
       get {
-        getFromResource(s"css/$fileName")
+        getFromResource("css/" + fileName)
       }
     } ~
     pathPrefix("bootstrap" / Rest) { fileName =>
       get {
-        getFromResource(s"twitter/bootstrap/$fileName")
+        getFromResource("twitter/bootstrap/" + fileName)
       }
     }
   }
