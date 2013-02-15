@@ -4,6 +4,8 @@ resolvers += "Typesafe Repository" at "http://repo.typesafe.com/typesafe/release
 
 scalaVersion := "2.10.0"
 
+name := "$name$"
+
 scalacOptions += "-feature"
 
 libraryDependencies ++= Seq(
