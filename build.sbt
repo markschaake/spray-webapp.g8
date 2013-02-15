@@ -4,7 +4,7 @@ publishTo := Some(Resolver.file("file", new File(Path.userHome.absolutePath + "/
 
 organization := "markschaake"
 
-appName := "spray-webapp.g8"
+name := "spray-webapp.g8"
 
 version := "0.1.0-SNAPSHOT"
 
