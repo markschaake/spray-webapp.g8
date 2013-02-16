@@ -8,32 +8,10 @@ object Main extends App
     with SprayCanHttpServerApp
     with SimpleRoutingApp
     with TwirlSupport
-    with spray.httpx.SprayJsonSupport {
+    with spray.httpx.SprayJsonSupport
+    with Routes {
 
   startServer(interface = "localhost", port = 8080) {
-    path("") {
-      get {
-        complete {
-          html.index.render("Hello, Spray!")
-        }
-      }
-    } ~
-    pathPrefix("js" / Rest) { fileName =>
-      get {
-        encodeResponse(Gzip) {
-          getFromResource("js/" + fileName)
-        }
-      }
-    } ~
-    pathPrefix("css" / Rest) { fileName =>
-      get {
-        getFromResource("css/" + fileName)
-      }
-    } ~
-    pathPrefix("bootstrap" / Rest) { fileName =>
-      get {
-        getFromResource("twitter/bootstrap/" + fileName)
-      }
-    }
+    routes
   }
 }

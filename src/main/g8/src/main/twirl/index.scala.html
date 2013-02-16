@@ -3,5 +3,35 @@
 @main(title) {
 
 } {
-<p>Hello there</p>
+<div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="#">@title</a>
+    <ul class="nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Link</a></li>
+      <li><a href="#">Link</a></li>
+    </ul>
+  </div>
+</div>
+<div class="container-fluid" ng-app="Cool">
+  <p>Hello there</p>
+  <div ng-controller="aController">
+    <ul class="unstyled">
+      <li ng-repeat="todo in todos">
+        <input type="checkbox" ng-model="todo.done">
+        <span class="done-{{todo.done}}">{{todo.text}}</span>
+      </li>
+    </ul>
+    <form ng-submit="addTodo()" class="form-inline">
+      <input type="text" ng-model="todoText" placeholder="add todo">
+      <input class="btn btn-primary" type="submit" value="add">
+    </form>
+    <h2>Peeps</h2>
+    <ul class="unstyled">
+      <li ng-repeat="peep in peeps">
+        {{peep.name}}
+      </li>
+    </ul>
+  </div>
+</div>
 }
