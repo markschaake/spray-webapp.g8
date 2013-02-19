@@ -1,26 +1,34 @@
 import spray.json._
 import java.util.UUID
-import schaake.spray.models._
+import sprest.models._
+import scala.concurrent.ExecutionContext.Implicits.global
 
 object JsonAPI {
   case class ToDo(text: String, done: Boolean, var id: Option[Int] = None) extends Model[Int]
 
   object ToDos extends MutableListDAO[ToDo, Int] with IntId {
-    all += ToDo("first", false, nextId)
-    all += ToDo("Second", true, nextId)
+    add(ToDo("first", false, None))
+    add(ToDo("Second", true, None))
   }
 
   case class Peep(name: String, var id: Option[Int] = None) extends Model[Int]
   object Peeps extends MutableListDAO[Peep, Int] with IntId {
-    all += Peep("Joe", nextId)
-    all += Peep("Bob", nextId)
-    def findByName(name: String) = all.find(_.name == name)
+    add(Peep("Joe", None))
+    add(Peep("Bob", None))
+    def findByName(name: String) = all map { _.find(_.name == name) }
   }
 
   case class Father(nick: String, kids: List[Peep], var id: Option[UUID]) extends Model[UUID]
   object Fathers extends MutableListDAO[Father, UUID] with UUIDId {
-    all += Father("pop", List(Peeps.findByName("Joe").get), nextId)
-    all += Father("daddy", List(Peeps.findByName("Bob").get), nextId)
+    Peeps.findByName("Joe") map {
+      case Some(p) => add(Father("pop", List(p), None))
+      case None => throw new Exception("could not find Joe")
+    }
+
+    Peeps.findByName("Bob") map {
+      case Some(p) => add(Father("daddy", List(p), None))
+      case None => throw new Exception("could not find Bob")
+    }
   }
 
   object Formats extends DefaultJsonProtocol {

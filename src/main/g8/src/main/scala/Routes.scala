@@ -1,5 +1,5 @@
 import spray.routing.SimpleRoutingApp
-import schaake.spray.routing.RestRoutes
+import sprest.routing.RestRoutes
 
 trait Routes extends RestRoutes { this: SimpleRoutingApp with spray.httpx.TwirlSupport =>
   import spray.routing.Directives._
