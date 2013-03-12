@@ -14,24 +14,18 @@
   </div>
 </div>
 <div class="container-fluid" ng-app="myModule">
-  <p>Hello there</p>
+  <h2>To Do's with <a href="https://github.com/markschaake/sprest">Sprest</a></h2>
   <div ng-controller="myController">
     <ul class="unstyled">
       <li ng-repeat="todo in todos">
-        <input type="checkbox" ng-model="todo.done">
-        <span class="done-{{todo.done}}">{{todo.text}}</span>
+        <input type="checkbox" ng-model="todo.done" ng-change="updateTodo(todo)">
+        <span class="done-{{todo.done}}">{{todo.text}}</span><a href="#" ng-click="removeTodo(todo)">[x]</a>
       </li>
     </ul>
     <form ng-submit="addTodo()" class="form-inline">
       <input type="text" ng-model="todoText" placeholder="add todo">
       <input class="btn btn-primary" type="submit" value="add">
     </form>
-    <h2>Peeps</h2>
-    <ul class="unstyled">
-      <li ng-repeat="peep in peeps">
-        {{peep.name}}
-      </li>
-    </ul>
   </div>
 </div>
 }
