@@ -8,7 +8,7 @@ trait Routes extends RestRoutes { this: SimpleRoutingApp with spray.httpx.TwirlS
   import spray.httpx.SprayJsonSupport._
   import spray.httpx.encoding.Gzip
   import spray.json._
-  import $package$.models._
+  import DB._
 
   val js = pathPrefix("js" / Rest) { fileName =>
     get {
