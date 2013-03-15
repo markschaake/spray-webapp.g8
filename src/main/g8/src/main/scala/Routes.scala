@@ -41,7 +41,7 @@ trait Routes extends RestRoutes { this: SimpleRoutingApp with spray.httpx.TwirlS
   val publicAssets = js ~ css ~ bootstrap
 
   val api = pathPrefix("api") {
-    restInt("todos", Todos)
+    restString("todos", Todos)
   }
 
   val routes = index ~ publicAssets ~ api
