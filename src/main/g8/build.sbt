@@ -13,7 +13,7 @@ scalacOptions += "-feature"
 libraryDependencies ++= Seq(
   "postgresql" % "postgresql" % "9.1-901.jdbc4",
   "com.typesafe.akka" %% "akka-actor" % "2.1.0",
-  "sprest" %% "sprest-$persistence$" % "0.1.0-SNAPSHOT",
+  "sprest" %% "sprest-reactivemongo" % "0.1.0-SNAPSHOT",
   "org.specs2" %% "specs2" % "1.13" % "test"
 )
 

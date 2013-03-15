@@ -1,3 +1,5 @@
+package $package$
+
 import spray.routing.SimpleRoutingApp
 import twirl.api._
 import spray.httpx.TwirlSupport

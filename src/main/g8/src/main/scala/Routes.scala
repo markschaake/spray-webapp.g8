@@ -1,3 +1,5 @@
+package $package$
+
 import spray.routing.SimpleRoutingApp
 import sprest.routing.RestRoutes
 
@@ -6,8 +8,7 @@ trait Routes extends RestRoutes { this: SimpleRoutingApp with spray.httpx.TwirlS
   import spray.httpx.SprayJsonSupport._
   import spray.httpx.encoding.Gzip
   import spray.json._
-  import JsonAPI._
-  import JsonAPI.Formats._
+  import $package$.models._
 
   val js = pathPrefix("js" / Rest) { fileName =>
     get {
@@ -40,7 +41,7 @@ trait Routes extends RestRoutes { this: SimpleRoutingApp with spray.httpx.TwirlS
   val publicAssets = js ~ css ~ bootstrap
 
   val api = pathPrefix("api") {
-    restInt("todos", ToDos)
+    restInt("todos", Todos)
   }
 
   val routes = index ~ publicAssets ~ api
