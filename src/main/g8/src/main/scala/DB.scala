@@ -13,6 +13,6 @@ object DB extends ReactiveMongoPersistence {
   lazy val db = connection("$name$")
 
   // MongoDB collections:                                                                                                                                                                                                             
-  object Todos extends CollectionDAO[ToDo, String](db("todos")) with UUIDStringId
+  object Todos extends CollectionDAO[Todo, String](db("todos")) with UUIDStringId
 
 }
