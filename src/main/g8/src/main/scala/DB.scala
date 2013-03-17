@@ -1,6 +1,7 @@
 package $package$
 
 import sprest.reactivemongo.ReactiveMongoPersistence
+import sprest.reactivemongo.typemappers._
 
 object DB extends ReactiveMongoPersistence {
 
@@ -11,6 +12,8 @@ object DB extends ReactiveMongoPersistence {
 
   lazy val connection = MongoConnection(List("localhost:27017"))
   lazy val db = connection("$name$")
+
+  implicit object JsBSONMapper extends SprayJsonTypeMapper with NormalizedIdTransformer
 
   // MongoDB collections:                                                                                                                                                                                                             
   object Todos extends CollectionDAO[Todo, String](db("todos")) with UUIDStringId
