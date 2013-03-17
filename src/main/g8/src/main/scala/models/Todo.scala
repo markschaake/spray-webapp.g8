@@ -1,6 +1,5 @@
 package $package$.models
 
-import sprest.reactivemongo.ModelCompanion
 import sprest.models._
 
 case class Todo(text: String, done: Boolean, var id: Option[String] = None) extends Model[String]
