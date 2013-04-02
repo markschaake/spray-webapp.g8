@@ -10,17 +10,11 @@ trait Routes extends RestRoutes { this: SimpleRoutingApp with spray.httpx.TwirlS
   import spray.json._
   import DB._
 
-  val js = pathPrefix("js" / Rest) { fileName =>
+  val publicAssets = pathPrefix("assets" / Rest) { fileName =>
     get {
       encodeResponse(Gzip) {
-        getFromResource("js/" + fileName)
+        getFromResource("assets/" + fileName)
       }
-    }
-  }
-
-  val css = pathPrefix("css" / Rest) { fileName =>
-    get {
-      getFromResource("css/" + fileName)
     }
   }
 
@@ -31,14 +25,6 @@ trait Routes extends RestRoutes { this: SimpleRoutingApp with spray.httpx.TwirlS
       }
     }
   }
-
-  val bootstrap = pathPrefix("bootstrap" / Rest) { fileName =>
-    get {
-      getFromResource("twitter/bootstrap/" + fileName)
-    }
-  }
-
-  val publicAssets = js ~ css ~ bootstrap
 
   val api = pathPrefix("api") {
     restString("todos", Todos)

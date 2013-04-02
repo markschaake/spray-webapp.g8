@@ -24,3 +24,7 @@ seq(Revolver.settings: _*)
 seq(coffeeSettings: _*)
 
 seq(lessSettings:_*)
+
+(resourceManaged in (Compile, LessKeys.less)) <<= (crossTarget in Compile)(_ / "assets" / "css")
+
+(resourceManaged in (Compile, CoffeeKeys.coffee)) <<= (crossTarget in Compile)(_ / "assets" / "js")
