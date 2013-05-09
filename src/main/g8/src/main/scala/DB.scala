@@ -5,12 +5,13 @@ import sprest.reactivemongo.typemappers._
 
 object DB extends ReactiveMongoPersistence {
 
-  import reactivemongo.api.MongoConnection
+  import reactivemongo.api._
   import scala.concurrent.ExecutionContext.Implicits.global
   import sprest.models.UUIDStringId
   import $package$.models._
 
-  lazy val connection = MongoConnection(List("localhost:27017"))
+  val driver = new MongoDriver
+  val connection = driver.connection(List("localhost"))
   lazy val db = connection("$name$")
 
   implicit object JsBSONMapper extends SprayJsonTypeMapper with NormalizedIdTransformer
